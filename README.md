@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4">
   <header class="text-center py-10">
-    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, Grace!</h1>
+    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, To The Grack Goat!</h1>
   </header>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div class="col-span-1 lg:col-span-3 text-center">
