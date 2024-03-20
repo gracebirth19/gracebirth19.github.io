@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4">
   <header class="text-center py-10">
-    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, Grace!</h1>
+    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday to The Grack Goat!!!! :3</h1>
     <button class="bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded-full my-4 focus:outline-none focus:shadow-outline" onclick="alert('Happy Birthday Grace!')">Click me! 🎂</button>
   </header>
   <!-- Content including images and dropdown menu here -->
