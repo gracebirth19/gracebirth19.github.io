@@ -17,7 +17,6 @@
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full">Publish Post</button>
     </form>
     <div id="posts-list" class="space-y-4">
-      <!-- Posts will be displayed here -->
     </div>
   </section>
 </div>
