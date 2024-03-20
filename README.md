@@ -10,37 +10,3 @@
     </a>
   </header>
 </div>
-<script>
-const postsForm = document.getElementById('posts-form');
-const postsList = document.getElementById('posts-list');
-
-function savePost(name, post, timestamp) {
-  // Insert the post at the beginning of the list
-  const posts = JSON.parse(localStorage.getItem('birthdayPosts')) || [];
-  posts.unshift({ name, post, timestamp });
-  localStorage.setItem('birthdayPosts', JSON.stringify(posts));
-}
-
-function loadPosts() {
-  const posts = JSON.parse(localStorage.getItem('birthdayPosts')) || [];
-  postsList.innerHTML = posts.map(p => 
-    '<div class="bg-white p-4 rounded shadow">' +
-    '<p class="font-semibold">' + p.name + ' - <span class="text-xs text-gray-600">' +
-    new Date(p.timestamp).toLocaleString() + '</span></p>' +
-    '<p class="text-gray-800">' + p.post + '</p>' +
-    '</div>'
-  ).join('');
-}
-
-postsForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  const name = event.target.elements.name.value;
-  const post = event.target.elements.post.value;
-  const timestamp = new Date().toISOString();
-  savePost(name, post, timestamp);
-  loadPosts();
-  event.target.reset();
-});
-
-loadPosts();
-</script>
