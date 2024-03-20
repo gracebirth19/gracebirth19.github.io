@@ -1,4 +1,3 @@
-# grathbirth19.github.io
 <div class="container mx-auto px-4">
   <header class="text-center py-10">
     <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, Grace!</h1>
