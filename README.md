@@ -9,39 +9,39 @@
         <span class="hidden">Click for a surprise!</span>🎂
       </button>
     </div>
-    <nav class="lg:col-span-3">
-      <div class="relative inline-block text-left">
-        <div>
-          <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
-            Categories
-            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M5.05 8.465a.75.75 0 00-.22.53c0 .2.08.39.22.53l3.25 3.25a.75.75 0 001.06 0l3.25-3.25a.75.75 0 00.22-.53.75.75 0 00-.22-.53l-3.25-3.25a.75.75 0 00-1.06 0l-3.25 3.25z"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-          <div class="py-1" role="none">
-            <a href="#pictures" class="text-gray-700 block px-4 py-2 text-sm">Pictures</a>
-            <a href="#discussions" class="text-gray-700 block px-4 py-2 text-sm">Discussions</a>
-            <a href="#writings" class="text-gray-700 block px-4 py-2 text-sm">Writings</a>
-          </div>
-        </div>
-      </div>
+    <nav class="lg:col-span-3 mb-10">
+      <!-- Dropdown menu here -->
     </nav>
-    <section id="pictures" class="col-span-1 lg:col-span-3">
-      <!-- Content for Pictures tab -->
+    <section id="comments" class="col-span-1 lg:col-span-3">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-5">Guestbook</h2>
+      <form id="comments-form" class="mb-6">
+        <input type="text" name="name" placeholder="Your Name" class="border border-gray-300 p-2 rounded-md mr-2 mb-2 w-full md:w-auto" required>
+        <textarea name="comment" placeholder="Your Comment" class="border border-gray-300 p-2 rounded-md w-full mb-2" required></textarea>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full md:w-auto mb-2">
+          Post Comment
+        </button>
+      </form>
+      <div id="comments-list" class="space-y-4">
+        <!-- Comments will be displayed here -->
+      </div>
     </section>
-    <section id="discussions" class="col-span-1 lg:col-span-3">
-      <!-- Content for Discussions tab -->
-    </section>
-    <section id="writings" class="col-span-1 lg:col-span-3">
-      <!-- Content for Writings tab -->
-    </section>
+    <!-- Additional sections for Pictures and Writings here -->
   </div>
 </div>
 <script>
   document.querySelector('button').addEventListener('click', function() {
     alert('Happy Birthday Grace!');
+  });
+
+  document.getElementById('comments-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var name = event.target.elements.name.value;
+    var comment = event.target.elements.comment.value;
+    var commentsList = document.getElementById('comments-list');
+    var newComment = document.createElement('div');
+    newComment.classList.add('bg-gray-100', 'p-4', 'rounded');
+    newComment.innerHTML = '<p class="font-semibold">' + name + '</p><p>' + comment + '</p>';
+    commentsList.appendChild(newComment);
+    event.target.reset();
   });
 </script>
