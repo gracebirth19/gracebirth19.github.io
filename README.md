@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4">
   <header class="text-center py-10">
-    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, To The Grack Goat!</h1>
+    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday to The Grack Goat :3!!!!!</h1>
   </header>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div class="col-span-1 lg:col-span-3 text-center">
@@ -29,16 +29,43 @@
   </div>
 </div>
 <script>
+  const commentsForm = document.getElementById('comments-form');
+  const commentsList = document.getElementById('comments-list');
+  const localStorageKey = 'birthdayComments';
+
+  function saveComment(name, comment, timestamp) {
+    const comments = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    comments.push({ name, comment, timestamp });
+    localStorage.setItem(localStorageKey, JSON.stringify(comments));
+  }
+
+  function loadComments() {
+    const comments = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    commentsList.innerHTML = comments.map(c => 
+      '<div class="bg-gray-100 p-4 rounded">' + 
+      '<p class="font-semibold">' + c.name + ' - <span class="text-xs text-gray-500">' +
+        new Date(c.timestamp).toLocaleString() + '</span></p>' +
+      '<p>' + c.comment + '</p>' + 
+      '</div>'
+    ).join('');
+  }
+
+  commentsForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = event.target.elements.name.value;
+    const comment = event.target.elements.comment.value;
+    const timestamp = new Date().toISOString();
+    saveComment(name, comment, timestamp);
+    loadComments();
+    event.target.reset();
+  });
+
+  loadComments();
+
   document.querySelector('button').addEventListener('click', function() {
     alert('Happy Birthday Grace!');
   });
-
-  document.getElementById('comments-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var name = event.target.elements.name.value;
-    var comment = event.target.elements.comment.value;
-    var commentsList = document.getElementById('comments-list');
-    var newComment = document.createElement('div');
+</script>
     newComment.classList.add('bg-gray-100', 'p-4', 'rounded');
     newComment.innerHTML = '<p class="font-semibold">' + name + '</p><p>' + comment + '</p>';
     commentsList.appendChild(newComment);
