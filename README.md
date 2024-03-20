@@ -1,48 +1,53 @@
 <div class="container mx-auto px-4">
   <header class="text-center py-10">
-    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday to The Grack Goat!!!! :3</h1>
-    <button class="bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded-full my-4 focus:outline-none focus:shadow-outline" onclick="alert('Happy Birthday Grace!')">Click me! 🎂</button>
+    <h1 class="text-4xl font-bold text-gray-800">Happy 19th Birthday, The Grack Goat! :3</h1>
+    <button class="bg-pink-500 hover:bg-pink-400 text-white font-semibold py-2 px-4 rounded-full my-4 focus:outline-none focus:shadow-outline" onclick="alert('Happy Birthday Grace!')">Click me! 🎂</button>
   </header>
-  <!-- Content including images and dropdown menu here -->
-  <section id="comments" class="col-span-1 lg:col-span-3">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-5">Guestbook</h2>
-    <form id="comments-form" class="mb-6">
+
+  <section id="posts" class="col-span-1 lg:col-span-3">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-5">Birthday Posts</h2>
+    <form id="posts-form" class="mb-6">
       <input type="text" name="name" placeholder="Your Name" class="border border-gray-300 p-2 rounded-md mr-2 mb-2 w-full md:w-auto" required>
-      <textarea name="comment" placeholder="Your Comment" class="border border-gray-300 p-2 rounded-md w-full mb-2" required></textarea>
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full md:w-auto mb-2">Post Comment</button>
+      <textarea name="post" placeholder="Your Post" class="border border-gray-300 p-2 rounded-md w-full mb-2" required></textarea>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full md:w-auto mb-2">Publish Post</button>
     </form>
-    <div id="comments-list" class="space-y-4">
-      <!-- Comments will be dynamically inserted here -->
+    <div id="posts-list" class="space-y-4">
+      <!-- Posts will be displayed here -->
     </div>
   </section>
 </div>
+
 <script>
-  const commentsForm = document.getElementById('comments-form');
-  const commentsList = document.getElementById('comments-list');
-  const localStorageKey = 'birthdayComments';
-  function saveComment(name, comment, timestamp) {
-    const comments = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-    comments.push({ name, comment, timestamp });
-    localStorage.setItem(localStorageKey, JSON.stringify(comments));
-  }
-  function loadComments() {
-    const comments = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-    commentsList.innerHTML = comments.map(c => 
-      '<div class="bg-gray-100 p-4 rounded">' + 
-      '<p class="font-semibold">' + c.name + ' - <span class="text-xs text-gray-500">' +
-        new Date(c.timestamp).toLocaleString() + '</span></p>' +
-      '<p>' + c.comment + '</p>' + 
-      '</div>'
-    ).join('');
-  }
-  commentsForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    const comment = event.target.elements.comment.value;
-    const timestamp = new Date().toISOString();
-    saveComment(name, comment, timestamp);
-    loadComments();
-    event.target.reset();
-  });
-  loadComments();
+const postsForm = document.getElementById('posts-form');
+const postsList = document.getElementById('posts-list');
+
+// In a production site, consider replacing with server-side code or more sophisticated client-side storage
+function savePost(name, post, timestamp) {
+  const posts = JSON.parse(localStorage.getItem('birthdayPosts')) || [];
+  posts.unshift({ name, post, timestamp });
+  localStorage.setItem('birthdayPosts', JSON.stringify(posts));
+}
+
+function loadPosts() {
+  const posts = JSON.parse(localStorage.getItem('birthdayPosts')) || [];
+  postsList.innerHTML = posts.map(p => 
+    '<div class="bg-gray-100 p-4 rounded">' +
+    '<p class="font-semibold">' + p.name + ' - <span class="text-xs text-gray-500">' +
+    new Date(p.timestamp).toLocaleString() + '</span></p>' +
+    '<p>' + p.post + '</p>' +
+    '</div>'
+  ).join('');
+}
+
+postsForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = event.target.elements.name.value;
+  const post = event.target.elements.post.value;
+  const timestamp = new Date().toISOString();
+  savePost(name, post, timestamp);
+  loadPosts();
+  event.target.reset();
+});
+
+loadPosts();
 </script>
