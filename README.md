@@ -7,6 +7,12 @@
       <button class="bg-white hover:bg-gray-100 text-pink-500 font-semibold py-2 px-4 rounded-full border border-pink-500 hover:border-pink-600 focus:outline-none focus:shadow-outline">
         <span aria-hidden="true">&hearts;</span> Click me Dickhead
       </button>
+<a href="https://youtube.com/watch?v=lF-s8hYIGzo&feature=shared
+" target="_blank" class="inline-block">
+  <button class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+    More from the Dicky Donkers
+  </button>
+</a>
     </a>
   </header>
   <section id="posts" class="my-8 px-4">
